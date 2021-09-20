@@ -13,17 +13,20 @@ class Evaluation(models.Model):
     def __str__(self):
         return self.name
 
-class EvaluationCourse(models.Model):
-    evaluation = models.ForeignKey(Evaluation, on_delete=models.CASCADE, blank=True, null=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, blank=True, null=True)
+    def save(self, *args, **kwargs):
+        evaluation = list(Evaluation.objects.filter(enable=True))
+        if len(evaluation)==0:
+            super(Evaluation, self).save(*args, **kwargs)
+        else:
+            self.enable=False
+            super(Evaluation, self).save(*args, **kwargs)
 
-    def __str__(self):
-        return str(self.pk)
 
 class EvaluationStudent(models.Model):
     grader=models.ForeignKey(Student, related_name = 'student_grader',on_delete=models.CASCADE, blank=True, null=True)
     graded=models.ForeignKey(Student, related_name = 'student_graded', on_delete=models.CASCADE, blank=True, null=True)
     grade=models.PositiveIntegerField()
+    evaluation = models.ForeignKey(Evaluation, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return str(self.pk)

@@ -43,7 +43,8 @@ def loaddata(request):
                 "grade": grade_grade
             }
             return render(request, 'completed.html',response)
-    else:      
+    else:  
+        referenceevaluation=Evaluation.objects.get(enable=True)    
         tmp=dict(request.POST)        
         l_graded=tmp["graded"]
         l_grade=tmp["grade"]
@@ -52,7 +53,7 @@ def loaddata(request):
         for graded,grade in zip(l_graded,l_grade):
             graded=Student.objects.get(pk=graded)
             try:
-                evaluation=EvaluationStudent(grader=grader, graded=graded,grade=grade)
+                evaluation=EvaluationStudent(grader=grader, graded=graded,grade=grade,evaluation=referenceevaluation)
                 evaluation.save()
             except:
                 message= "try again"
