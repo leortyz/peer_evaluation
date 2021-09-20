@@ -18,6 +18,7 @@ from django.urls import include, path
 from evaluation import views
 urlpatterns = [
     path('', views.index, name='index'),
+    path('evaluate_peers/', views.loaddata, name='load_data'),
     path('admin/', admin.site.urls),
     
 ]
