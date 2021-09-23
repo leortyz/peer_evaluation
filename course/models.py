@@ -5,10 +5,10 @@ from student.models import Student
 
 class Course(models.Model):
     class Semester(models.TextChoices):
-        PAE = '0', ('I PAE')
-        PAO1 = '1', ('I PAO')
-        PAO2 = '2', ('II PAO')
-        NULL = '-', ('Not defined')
+        PAE = 'I PAE', ('I PAE')
+        PAO1 = 'I PAO', ('I PAO')
+        PAO2 = 'II PAO', ('II PAO')
+        NULL = 'Not defined', ('Not defined')
 
     class Parallel(models.TextChoices):
         ONE = '1', ('1')
@@ -16,17 +16,17 @@ class Course(models.Model):
         THREE = '3', ('3')
         FOUR = '4', ('4')
         FIVE = '5', ('5')
-        NULL = '-', ('Not defined')
+        NULL = 'Not defined', ('Not defined')
 
     name=models.CharField(max_length=1000, default=config('DEFAULT_COURSE_NAME'))
     year= models.CharField(max_length=4,default=config('DEFAULT_YEAR'))
     semester = models.CharField(
-        max_length=2,
+        max_length=20,
         choices=Semester.choices,
         default=Semester.NULL,
     )
     parallel = models.CharField(
-        max_length=2,
+        max_length=20,
         choices=Parallel.choices,
         default=Parallel.NULL,
     )

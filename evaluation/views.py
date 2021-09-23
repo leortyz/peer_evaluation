@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from student.models import Student
 from course.models import GroupMember, Group
 
-def index(request):
+def index(request): 
     return render(request, 'index.html',{"course":config('DEFAULT_COURSE_NAME')})
 
 def loaddata(request):  

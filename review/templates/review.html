@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Peer Evaluation</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>
+          Peer Evaluation {{course}}
+        </h2>
+      </div>
+    </div>
+    
+    <hr>
+    <div>
+        <h5>Select the parameters you want to see the grades</h5>
+    </div>
+    {%if courses%}
+    <form action="" method="post" class="row">
+        {% csrf_token %}
+        <div class="col-12">
+          <div class="d-flex justify-content-around">
+            <div class="form-group">
+                <label for="formControlSelect1">Course</label>
+                <select class="form-control" name="formControlSelect1" id="formControlSelect1">  
+                    <option selected>Choose...</option>  
+                {%for c in courses%}
+                  <option>{{c.name}}</option>
+                {%endfor%}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="formControlSelect2">Year</label>
+                <select class="form-control" name="formControlSelect2" id="formControlSelect2"> 
+                    <option selected>Choose...</option>   
+                {%for y in years%}
+                  <option>{{y}}</option>
+                {%endfor%}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="formControlSelect3">Semester</label>
+                <select class="form-control" name="formControlSelect3" id="formControlSelect3">  
+                    <option selected>Choose...</option>  
+                {%for s in semesters%}
+                  <option>{{s}}</option>
+                {%endfor%}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="formControlSelect4">Parallel</label>
+                <select class="form-control"  name="formControlSelect4" id="formControlSelect4">  
+                    <option selected>Choose...</option>  
+                {%for p in parallels%}
+                  <option>{{p}}</option>
+                {%endfor%}
+                </select>
+            </div>
+          </div>
+          
+        </div>
+        <div class="col-12">
+          <button class="btn btn-success btn-lg btn-block" type="submit">Submit Ratings</button>
+        </div>
+  
+      </form>
+    {%endif%}
+    <hr>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
